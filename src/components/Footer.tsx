@@ -1,22 +1,10 @@
 import { Instagram, Mail, MapPin, Phone, Globe } from "lucide-react";
-import type { SVGProps } from "react";
+import { FaTiktok } from "react-icons/fa6";
 import AyoKeBank from "../assets/images/Ayo-ke-bank.png";
 import Bpr from "../assets/images/BPR.png";
 import Reliance from "../assets/images/reliance-logo.png";
 import Sinarmas from "../assets/images/sinarmas-logo.png";
 
-const TikTokIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    {...props}
-  >
-    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-2.43.05-4.86-.95-6.69-2.81-1.75-1.76-2.59-4.22-2.6-6.65.01-2.39 1.02-4.78 2.73-6.51 1.96-1.99 4.76-2.96 7.44-2.91v4.03c-1.44.05-2.89.35-4.2.97-.57-.26-1.1.59-1.62-.93-.01 2.92.01 5.84-.02 8.75.08 1.4.54 2.79 1.35 3.94 1.31 1.92 3.58 3.17 5.91 3.21 2.43.05 4.86-.95 6.69-2.81 1.75-1.76 2.59-4.22-2.6-6.65Z" />
-  </svg>
-);
 
 const Footer = () => {
   return (
@@ -68,7 +56,7 @@ const Footer = () => {
             <h3 className="text-xl font-bold">Sosial Media BPR Lescadana</h3>
             <ul className="mt-4 space-y-2 text-sm">
               <li className="flex items-center">
-                <TikTokIcon className="mr-2 h-5 w-5 flex-shrink-0" />
+                <FaTiktok className="mr-2 h-5 w-5 flex-shrink-0"/>
                 <span>@bprbatam</span>
               </li>
               <li className="flex items-center">
