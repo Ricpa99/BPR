@@ -1,7 +1,7 @@
 import { Instagram, Mail, MapPin, Phone, Globe } from "lucide-react";
 import type { SVGProps } from "react";
 import AyoKeBank from "../assets/images/Ayo-ke-bank.png";
-import Bpr from "../assets/images/bpr.png";
+import Bpr from "../assets/images/BPR.png";
 import Reliance from "../assets/images/reliance-logo.png";
 import Sinarmas from "../assets/images/sinarmas-logo.png";
 
