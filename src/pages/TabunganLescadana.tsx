@@ -99,7 +99,7 @@ function TabunganLescadana() {
       <section className="bg-white py-16 md:py-24 border-t border-gray-100">
         <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-gold underline decoration-2 underline-offset-8 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-text decoration-2 mb-4">
               Tabungan Dengan Ragam Fasilitas Terbaik
             </h2>
             <p className="text-lg text-brand-text font-medium">
