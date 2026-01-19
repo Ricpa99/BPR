@@ -10,7 +10,7 @@ interface HeroProps {
 
 function Hero({ title, description, image, buttonText, onButtonClick }: HeroProps) {
   return (
-    <section className="bg-brand-background pt-2 pb-12 md:pt-4 md:pb-20">
+    <section className="bg-brand-background pt-2 pb-12 max-md:pt-6 md:pb-20">
       <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-8 lg:grid-cols-2">
           <div className="text-center lg:text-left">
