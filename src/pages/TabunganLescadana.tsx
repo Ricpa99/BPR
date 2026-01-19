@@ -114,12 +114,12 @@ function TabunganLescadana() {
                 Di Rekomendasikan Untuk
               </h3>
               <div className="flex flex-col gap-6 items-center md:items-start">
-                <div className="bg-brand-gold px-8 py-4 rounded-full shadow-facility-shadow max-w-md text-center">
+                <div className="bg-brand-gold px-8 py-4 rounded-xl shadow-facility-shadow max-w-md text-center">
                   <p className="text-white text-sm md:text-base font-medium">
                     Nasabah yang ingin mulai usaha dari penghasilan pribadi
                   </p>
                 </div>
-                <div className="bg-brand-gold px-8 py-4 rounded-full shadow-facility-shadow max-w-md text-center">
+                <div className="bg-brand-gold px-8 py-4 rounded-xl shadow-facility-shadow max-w-md text-center">
                   <p className="text-white text-sm md:text-base font-medium">
                     Nasabah dengan jumlah uang cukup besar yang perlu diamankan untuk jaminan masa depan keluarga.
                   </p>
@@ -152,7 +152,7 @@ function TabunganLescadana() {
                 </div>
               </div>
               <div className="flex justify-center md:justify-start">
-                <div className="bg-brand-gold px-8 py-4 rounded-[30px] shadow-facility-shadow max-w-xs text-center">
+                <div className="bg-brand-gold px-8 py-4 rounded-xl shadow-facility-shadow max-w-xs text-center">
                   <p className="text-white text-sm font-medium italic">
                     Hubungi tim Sales Lescadana untuk proses pembukaan rekening tabungan hari ini juga
                   </p>
@@ -181,13 +181,13 @@ function TabunganLescadana() {
                 `}
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
               >
-                <div className="flex justify-between items-center gap-4">
-                  <p className="text-brand-text font-bold text-sm md:text-base">
+                <div className="flex justify-between items-start gap-4">
+                  <p className="text-brand-text font-bold text-sm md:text-base leading-tight">
                     {faq.question}
                   </p>
                   <HiChevronDown 
                     className={`
-                      w-5 h-5 text-brand-text flex-shrink-0 transition-transform duration-300
+                      w-5 h-5 text-brand-text flex-shrink-0 transition-transform duration-300 mt-0.5
                       ${openFaq === index ? 'rotate-180' : ''}
                     `}
                   />
