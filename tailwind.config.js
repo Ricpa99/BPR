@@ -12,6 +12,7 @@ export default {
       boxShadow: {
         'custom-gold': '0 3px 5px 0 rgba(52, 55, 60, 0.25)',
         'card-shadow': '0 5px 12.8px 4px rgba(172, 171, 183, 0.25)',
+        'card-advantage': '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
       },
     },
   },

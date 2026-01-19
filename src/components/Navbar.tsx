@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import logoBpr from '../assets/images/logo-BPR.png'
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isProdukOpen, setIsProdukOpen] = useState(false)
+  const location = useLocation()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -17,12 +18,31 @@ function Navbar() {
   }
 
   const produkSubmenu = [
+    { name: '', href: '/' },
     { name: 'Tabungan Lescadana', href: '/tabungan-lescadana' },
     { name: 'Deposito', href: '/deposito' },
     { name: 'KPM', href: '/kpm' },
     { name: 'KPR', href: '/kpr' },
     { name: 'Riplay', href: '/riplay' },
   ]
+
+  const isProdukActive = produkSubmenu.some(item => location.pathname === item.href)
+
+  const NavItem = ({ href, children, hasChevron = true }: { href: string; children: React.ReactNode; hasChevron?: boolean }) => {
+    const active = location.pathname === href
+    return (
+      <Link 
+        to={href} 
+        className={`relative inline-flex items-center gap-1 py-2 hover:text-brand-gold transition-colors ${active ? 'text-brand-gold' : ''}`}
+      >
+        <span>{children}</span>
+        {hasChevron && <ChevronDown className="h-4 w-4" />}
+        {active && (
+          <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-gold rounded-full" />
+        )}
+      </Link>
+    )
+  }
 
   return (
     <header className="relative bg-white shadow-md z-50">
@@ -42,10 +62,13 @@ function Navbar() {
           <div className="relative group">
             <button 
               onClick={toggleProduk}
-              className="inline-flex items-center gap-1 hover:text-brand-gold transition-colors"
+              className={`relative inline-flex items-center gap-1 py-2 hover:text-brand-gold transition-colors ${isProdukActive ? 'text-brand-gold' : ''}`}
             >
               <span>Produk Kami</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isProdukOpen ? 'rotate-180' : ''}`} />
+              {isProdukActive && (
+                <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-gold rounded-full" />
+              )}
             </button>
             
             {/* Desktop Dropdown */}
@@ -56,7 +79,8 @@ function Navbar() {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-brand-gold"
+                      className={`block px-4 py-2 text-sm hover:bg-gray-100 hover:text-brand-gold ${location.pathname === item.href ? 'text-brand-gold bg-gray-50' : 'text-gray-700'}`}
+                      onClick={() => setIsProdukOpen(false)}
                     >
                       {item.name}
                     </Link>
@@ -65,19 +89,11 @@ function Navbar() {
               </div>
             )}
           </div>
-          <Link to="#" className="inline-flex items-center gap-1">
-            <span>Kredit</span>
-            <ChevronDown className="h-4 w-4" />
-          </Link>
-          <Link to="#" className="inline-flex items-center gap-1">
-            <span>Laporan</span>
-            <ChevronDown className="h-4 w-4" />
-          </Link>
-          <Link to="#" className="inline-flex items-center gap-1">
-            <span>Hubungi Kami</span>
-            <ChevronDown className="h-4 w-4" />
-          </Link>
-          <Link to="#">Library</Link>
+          
+          <NavItem href="/kredit">Kredit</NavItem>
+          <NavItem href="/laporan">Laporan</NavItem>
+          <NavItem href="/hubungi-kami">Hubungi Kami</NavItem>
+          <NavItem href="/library" hasChevron={false}>Library</NavItem>
         </nav>
 
         {/* Hamburger Button */}
@@ -107,20 +123,26 @@ function Navbar() {
           <div>
             <button 
               onClick={toggleProduk}
-              className="flex w-full items-center justify-between"
+              className={`flex w-full items-center justify-between py-2 ${isProdukActive ? 'text-brand-gold' : ''}`}
             >
-              <span>Produk Kami</span>
+              <span className="relative">
+                Produk Kami
+                {isProdukActive && (
+                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-gold rounded-full" />
+                )}
+              </span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isProdukOpen ? 'rotate-180' : ''}`} />
             </button>
             
             {/* Mobile Dropdown */}
             {isProdukOpen && (
-              <div className="mt-2 flex flex-col gap-2 pl-4">
+              <div className="mt-2 flex flex-col gap-2 pl-4 border-l-2 border-gray-100">
                 {produkSubmenu.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="py-2 text-gray-600 hover:text-brand-gold"
+                    className={`py-2 hover:text-brand-gold ${location.pathname === item.href ? 'text-brand-gold font-semibold' : 'text-gray-600'}`}
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
@@ -128,19 +150,28 @@ function Navbar() {
               </div>
             )}
           </div>
-          <Link to="#" className="inline-flex items-center justify-between">
-            <span>Kredit</span>
-            <ChevronDown className="h-4 w-4" />
-          </Link>
-          <Link to="#" className="inline-flex items-center justify-between">
-            <span>Laporan</span>
-            <ChevronDown className="h-4 w-4" />
-          </Link>
-          <Link to="#" className="inline-flex items-center justify-between">
-            <span>Hubungi Kami</span>
-            <ChevronDown className="h-4 w-4" />
-          </Link>
-          <Link to="#">Library</Link>
+
+          {[
+            { name: 'Kredit', href: '/kredit', hasChevron: true },
+            { name: 'Laporan', href: '/laporan', hasChevron: true },
+            { name: 'Hubungi Kami', href: '/hubungi-kami', hasChevron: true },
+            { name: 'Library', href: '/library', hasChevron: false },
+          ].map((item) => (
+            <Link 
+              key={item.name}
+              to={item.href} 
+              className={`flex items-center justify-between py-2 ${location.pathname === item.href ? 'text-brand-gold' : ''}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <span className="relative">
+                {item.name}
+                {location.pathname === item.href && (
+                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-gold rounded-full" />
+                )}
+              </span>
+              {item.hasChevron && <ChevronDown className="h-4 w-4" />}
+            </Link>
+          ))}
         </div>
       </nav>
     </header>
